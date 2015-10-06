@@ -55,7 +55,7 @@
         $grens1 = 80;
         $grens2 = 90;
     }
-    else if($getal >= 90 && $getal < 100)
+    else ($getal >= 90 && $getal < 100)
     {
         $grens1 = 90;
         $grens2 = 100;
