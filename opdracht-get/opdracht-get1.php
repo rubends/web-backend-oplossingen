@@ -11,33 +11,56 @@
     
     if (isset($_GET["key"]))
 	{
-		$key = $_GET["key"];
-        if (array_key_exists($key, $krant))
-		{
-			$krant = array($krant[$key]);
-			$artikel = true;
-		}
-		else
-		{
-			$existing =	true;
-		}
-    }
-    if (!empty($_GET["search"]))
-	{
-        $search = $_GET["search"];
-    
-        foreach($krant as $key => $artikel)
+        if($_GET["key"]<count($krant))
         {
-            if(strpos($artikel["tekst"], $search) !== false)
+            $key = $_GET["key"];
+            if (array_key_exists($key, $krant))
             {
-                echo $artikel["tekst"];
+                $krant = array($krant[$key]);
+                $artikel = true;
+            }
+            else
+            {
+                $existing =	true;
             }
         }
+        else
+        {
+            echo "Het artikel dat u zoekt is onbestaand";
+        }
     }
-    else
-    {
-        unset($_GET["search"]);
+    if (isset($_GET["search"]))
+	{
+            $search = $_GET["search"];
+            if (strpos($artikel1["tekst"], $search) !== false)
+            {
+                $krant = array($krant[0]);
+            }
+            else if (strpos($artikel2["tekst"], $search) !== false)
+            {
+                $krant = array($krant[1]);
+            }
+            else if (strpos($artikel3["tekst"], $search) !== false)
+            {
+                $krant = array($krant[2]);
+            }
+            else
+            {
+                echo "Het artikel dat u zoekt is onbestaand";
+            }  
     }
+//    if (isset($_GET["search"]) || $_GET["search"] = null)
+//	{
+//        $search = $_GET["search"];
+//    
+//        foreach($krant as $key => $artikel)
+//        {
+//            if(strpos($artikel["tekst"], $search) !== false)
+//            {
+//                echo $artikel["tekst"];
+//            }
+//        }
+//    }
     
     
 ?>
@@ -53,7 +76,7 @@
             float: left;
             border: 1px solid black;
             padding: 2%;
-            min-height: 450px;
+            min-height: 500px;
         }
         img {
             width: 100%;
@@ -71,10 +94,6 @@
             <p><?php echo $artikel['fotobeschrijving']?></p>
             <?php if (!empty($_GET)) : ?> 
                 <h3><?php echo $artikel['tekst'] ?></h3>
-                
-            <?php elseif ($key > count($krant) || is_string ($key)) : ?> 
-                <h3>Dit artikel bestaat niet.</h3>
-                
             <?php else : ?>
                 <h3><?php echo substr($artikel['tekst'], 0, 50). "..." ;?></h3>
                 <a href="opdracht-get1.php?key=<?php echo $key ?>">Lees meer</a>
