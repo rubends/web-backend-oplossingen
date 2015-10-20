@@ -29,7 +29,7 @@
             echo "Het artikel dat u zoekt is onbestaand";
         }
     }
-    if (isset($_GET["search"]))
+/*    if (isset($_GET["search"]))
 	{
             $search = $_GET["search"];
             if (strpos($artikel1["tekst"], $search) !== false)
@@ -48,19 +48,19 @@
             {
                 echo "Het artikel dat u zoekt is onbestaand";
             }  
+    }*/
+    if (isset($_GET["search"]))
+	{
+        $search = $_GET["search"];
+    
+        foreach($krant as $key => $artikel)
+        {
+            if(strpos($artikel["tekst"], $search) !== false)
+            {
+                $krant = array($artikel);
+            }
+        }
     }
-//    if (isset($_GET["search"]) || $_GET["search"] = null)
-//	{
-//        $search = $_GET["search"];
-//    
-//        foreach($krant as $key => $artikel)
-//        {
-//            if(strpos($artikel["tekst"], $search) !== false)
-//            {
-//                echo $artikel["tekst"];
-//            }
-//        }
-//    }
     
     
 ?>
