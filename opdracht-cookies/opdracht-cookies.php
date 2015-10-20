@@ -1,23 +1,25 @@
 <?php 
     $data =	file_get_contents("data.txt");
 	$user =	explode(",", $data );
-
+    $users = count($user);
+    $ingelogd = false;
     $message = "";
-    if( !isset($_COOKIE["loggedin"]))
+    if( !isset($_COOKIE['loggedin']))
     {
         
-        $ingelogd = false;
-        if (isset($_POST["submit"]))
+       if (isset($_POST["submit"]))
         {
-			if ($_POST["name"] == $user[0] && $_POST["password"] == $user[1])
+            for ($id = 0; $id < $users; $id = $id+2)
+            {
+			if ($_POST["name"] == $user[$id] && $_POST["password"] == $user[$id+1])
 			{
-                if(isset($_POST["check"])
+                if(!isset($_POST["check"]))
                 {
-				    setcookie(‘loggedin’, ‘’, time()+360);
+				    setcookie('loggedin', $_POST["name"], time()+360);
                 }
                 else
                 {
-                    setcookie(‘loggedin’, ‘’, time()+2592000);      
+                    setcookie('loggedin', $_POST["name"], time()+2592000);      
                 }
 				header("location: opdracht-cookies.php");
 			}
@@ -25,17 +27,20 @@
             {
                 $message = "Gebruikersnaam en/of paswoord niet correct. Probeer opnieuw.";
             }
+            }
+            
         }
     }
     else
     {
-        $message = "U bent ingelogd.";
         $ingelogd = true;
-        if (isset($_POST["logout"]))
-        {
-        setcookie(‘loggedin’, ‘’, time()-360);
+        $message = "Hallo " . $_COOKIE["loggedin"] . ", fijn dat je er weer bij bent!";
+    }
+
+    if (isset($_GET["logout"]))
+    {
+        setcookie("loggedin", $_POST["name"], time()-2592000);
         header("location: opdracht-cookies.php");
-        }
     }
     
 
@@ -49,7 +54,6 @@
 <body>
    <h1>Inloggen</h1>
    <?php echo $message ?>
-   <?php echo $ingelogd ?>
    <?php if (!$ingelogd): ?>
     <form action="opdracht-cookies.php" method="post">
 				<ul>
