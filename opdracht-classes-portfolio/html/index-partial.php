@@ -1,4 +1,4 @@
-<section class="clearfix">
+<section class="content">
 	<div class="main-content">Main content</div>
 	<div class="side-panel">Side panel</div>
 </section>	

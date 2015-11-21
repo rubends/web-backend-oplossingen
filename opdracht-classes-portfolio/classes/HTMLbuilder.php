@@ -10,6 +10,8 @@
 			$this->header	=	$header;
 			$this->body		=	$body;
 			$this->footer	=	$footer;
+
+            $this->buildPage();
 			
 		}
         
@@ -17,8 +19,10 @@
         {
             foreach (glob("css/*.css") as $css)
             {
-                echo "<link type='text/css' rel='stylesheet' href='$css'>\n";
+                $cssArray[] = "<link type='text/css' rel='stylesheet' href='$css'>";
             }
+            $cssLink = implode('', $cssArray);
+
             include 'html/'. $this->header;
         }
         public function buildBody()
@@ -29,9 +33,17 @@
         {
             foreach (glob("js/*.js") as $js) 
             {
-                echo "<script src='$js'></script>\n";
+               $jsArray[] = "<script src='$js'></script>";
             }
+            $jsLink = implode('', $jsArray);
             include 'html/'. $this->footer;
+        }
+
+        public function buildPage()
+        {
+            $this->buildHeader();
+            $this->buildBody();
+            $this->buildFooter();
         }
         
         public function findFiles($dir, $file)

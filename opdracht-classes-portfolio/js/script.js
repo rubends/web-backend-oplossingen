@@ -1,3 +1,3 @@
-if(window.onload) {
-    console.log( 'dit werkt' );
-}
+window.onload = function() {
+    console.log( 'javascript werkt' );
+};

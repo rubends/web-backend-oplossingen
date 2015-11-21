@@ -4,13 +4,13 @@
 	<head>
 	
 		<meta charset="utf-8">
-		<title>Verknipte pagina</title>
+		<title>Portfolio</title>
 		
 		<style>		
 			
 		</style>
 		
-		<?php echo $cssLinks ?>
+		<?php echo $cssLink ?>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 			<a href="#">inloggen</a>
 		</div>
 		<div class="hero">
-			<div class="caption">Ai Weiwei en 100 000 zonnebloempitten.</div>
+			<div class="caption"><h1>Ai Weiwei en 100 000 zonnebloempitten.<h1></div>
 		</div>
 		<div class="nav">
 			<ul>
