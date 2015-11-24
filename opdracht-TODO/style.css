@@ -1,0 +1,15 @@
+.del, .done {
+	height: 15px;
+	border-radius: 15px;
+	cursor: pointer;
+	cursor: hand;
+}
+.done:hover, li:hover .done {
+	background-color:green;
+}
+li:hover{
+	text-decoration: line-through;
+}
+.del {
+	background-color:red;
+}
