@@ -1,4 +1,16 @@
 <?php
+
+
+
+	// MET COOKIES GEPROBEERD ===> GEEN SLIM PLAN
+
+
+
+
+
+
+
+
 	$message = "Je hebt nog geen TODO's toegevoegd. Zo weinig werk of meesterplanner?";
 	$nogtodo = "";
 	$donedone = "";
@@ -107,7 +119,7 @@
     	<ul>
     		<?php foreach($todos as $t){ ?>
     			<li>
-    				<form action="index.php" method="POST">
+    				<form action="indexfail.php" method="POST">
 					<input type="submit" name="done" value="" class="done">
 					<?php echo $t; ?>
 					<input type="submit" name="del<?php echo $t; ?>" value="X" class="del">
@@ -121,7 +133,7 @@
 		<p><?php echo $message ?></p>
 		
 		<h1>Todo toevoegen</h1>
-		<form action="index.php" method="POST">
+		<form action="indexfail.php" method="POST">
 		
 			<label for="todo">Beschrijving: </label>
 			<input type="text" id="todo" name="todo">

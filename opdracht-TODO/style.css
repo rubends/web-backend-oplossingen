@@ -4,12 +4,16 @@
 	cursor: pointer;
 	cursor: hand;
 }
-.done:hover, li:hover .done {
+.done:hover, li:hover .done, .check {
 	background-color:green;
 }
-li:hover{
+li:hover, .check{
 	text-decoration: line-through;
 }
 .del {
 	background-color:red;
+	color: white;
+}
+li {
+	list-style: none;
 }
