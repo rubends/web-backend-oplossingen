@@ -7,6 +7,7 @@
   
   //DEZE KEER MET SESSION IPV COOKIES, NEEMT ARRAY!!!
 
+
   if(isset($_POST["submit"]))
   {
     if(!empty($_POST["todo"]))
@@ -57,6 +58,9 @@
   {
      $werkwinkel = "Werk aan de winkel...";
   }
+
+  $todoarray=$_SESSION["todolist"];
+  $donearray=$_SESSION["donelist"];
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +80,7 @@
     <?php echo $message ?>
 
     <ul>
-      <?php if(!empty($_SESSION["todolist"])){foreach($_SESSION["todolist"] as $todos => $t){?>
+      <?php if(!empty($todoarray)){foreach($todoarray as $todos => $t){?>
         <li>
           <form action="todo.php" method="POST">
             <button type="submit" value ="<?php echo $todos ?>" class="done" name="done"></button>
@@ -92,7 +96,7 @@
     <?php echo $werkwinkel ?>
     
     <ul>
-      <?php if(!empty($_SESSION["donelist"])){foreach($_SESSION["donelist"] as $dones => $d){?>
+      <?php if(!empty($donearray)){foreach($donearray as $dones => $d){?>
         <li>
           <form action="todo.php" method="POST">
             <button type="submit" value ="<?php echo $dones ?>" class="done check" name="notdone"></button>
