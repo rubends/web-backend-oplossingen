@@ -1,25 +1,23 @@
 <?php
     $message = "";
-    $bieren = array();
-    $primary = array();
 
     try
     {
         $db = new PDO('mysql:host=localhost;dbname=bieren', 'root', 'password' );
         
-        $queryString = 'SELECT *FROM bieren INNER JOIN brouwersON bieren.brouwernr = brouwers.brouwernrWHERE bieren.naam LIKE "Du%"AND brouwers.brnaam LIKE "%a%"';
-
-        $exe = $db->prepare($queryString);
-        $exe->execute();
-
-        while ($rij = $exe->fetch(PDO::FETCH_ASSOC))
+        $queryString = 'SELECT * FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE bieren.naam LIKE "Du%" AND brouwers.brnaam LIKE "%a%"';
+        $bieren = $db->prepare($queryString);
+        $bieren->execute();
+        $bierArr = array();
+        while ($bier = $bieren->fetch(PDO::FETCH_ASSOC))
         {
-            $bieren[] = $rij;
+            $bierArr[] = $bier;
         }
-        $primary[] = 'biernr (PK)';
-        foreach($bieren[0] as $key => $bier)
+
+        $biermerken = array();
+        foreach($bierArr[1] as $merk => $bier)
         {
-            $primary[] = $key;
+            $biermerken[] = $merk;
         }
     }
     catch (Exception $e)
@@ -40,19 +38,17 @@
         
         <thead>
             <tr>
-                <?php foreach($primary as $kolom):?>
-                    <th><?= $kolom ?></th>
-                <?php endforeach?>
+                <?php foreach ($biermerken as $biermerk): ?>
+                    <th><?= $biermerk ?></th>
+                <?php endforeach ?>
             </tr>
         </thead>
 
         <tbody>
-        
-            <?php foreach ($bieren as $key => $bier): ?>
+            <?php foreach ($bierArr as $bierdetails): ?>
                 <tr>
-                    <td><?= ($key + 1) ?></td>
-                    <?php foreach ($bier as $value): ?>
-                        <td><?= $value ?></td>
+                    <?php foreach ($bierdetails as $detail): ?>
+                    <td><?= $detail ?></td>
                     <?php endforeach ?>
                 </tr>
             <?php endforeach ?>
