@@ -58,14 +58,14 @@
                 </tr>
         </thead>
         <tbody>
-                <?php foreach ($bieren as $key => $bier): ?>
+                <?php if(!empty($bieren)): foreach ($bieren as $key => $bier): ?>
                 <tr>
                     <td><?= $key +1 ?></td>
                     <?php foreach ($bier as $naam): ?>
                     <td><?= $naam ?></td>
                     <?php endforeach ?>
                 </tr>
-            <?php endforeach ?>
+            <?php endforeach ?><?php endif ?>
         </tbody>
     </table>
 </body>
