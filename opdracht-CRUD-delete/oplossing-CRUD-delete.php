@@ -55,6 +55,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CRUD delete</title>
+	<style>
+		tr:nth-child(even) {background-color: lightgrey;}
+	</style>
 </head>
 <body>
 
