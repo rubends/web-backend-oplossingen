@@ -1,7 +1,5 @@
 <?php
-
-
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Registeren</h1>
+		<h1>Inloggen</h1>
 		<?= (isset($_SESSION['notification']) ? $_SESSION['notification'] : "") ?>
 		<form action="login-process.php" method="POST">
 			<ul>
@@ -23,7 +21,6 @@
 				<li>
 				<label for="password">password</label>
 				<input type="password" name="password">
-				<input type="submit" name="generate" value="Genereer een paswoord">
 				</li>
 			</ul>
 			<input type="submit" name="login" value="Inloggen">
