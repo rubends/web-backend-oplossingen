@@ -1,6 +1,8 @@
 <?php
 	session_start();
-
+	if (isset($_COOKIE[login])) {
+		header("Location: dashboard.php?");
+	}
 ?>
 
 <!DOCTYPE html>
