@@ -22,9 +22,16 @@
 				if ((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg")
 				|| ($_FILES["file"]["type"] == "image/png"))&& ($_FILES["file"]["size"] < 2000000)) 
 				{
-					move_uploaded_file($_FILES["file"]["tmp_name"], (ROOT . "/img/" . $_FILES["file"]["name"]));
+					$time = date("Y-m-d H:i:s");
+					move_uploaded_file($_FILES["file"]["tmp_name"], (ROOT . "/img/" . $time . $_FILES["file"]["name"] . $_FILES["file"]["type"]));
 					$users->execute();
+					$_SESSION['notification'] = "Gegevens werden succesvol gewijzigd"; 
 					header("Location: gegevens-wijzigen-form.php?");
+				}
+				else 
+				{
+					$_SESSION['notification'] = "Foute file"; 
+					header("Location: gegevens-wijzigen-form-form.php?");
 				}
 			}
 		}

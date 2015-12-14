@@ -26,7 +26,7 @@
 		    $mailsalthash = hash('SHA512',  $email  . $salt);
 		    if ($emailArr[1]==$mailsalthash) 
 		    {
-		    	
+		    	$_SESSION['notification'] = "";
 		    }
 		    else 
 		    {
