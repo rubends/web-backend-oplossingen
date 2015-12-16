@@ -13,7 +13,7 @@
 	<div class="container">
 	<h1>Contacteer ons</h1>
 	<?= (isset($_SESSION['notification']) ? $_SESSION['notification'] : "") ?>
-	<form action="contact.php" method="POST">
+	<form action="contact.php" method="POST" id="form">
 		<ul>
 			<li>
 				<label for="email">E-mail</label>
@@ -34,7 +34,32 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
 		$( document ).ready(function() {
-		    console.log( "jQ werkt!" );
+		    $('#form').submit(function(){
+		    	var info = $("#form").serialize();
+
+		    	$.ajax({
+		    		type: 'POST',
+					url: 'contact-API.php',
+					data: info,
+					success: function(data) {
+						
+						data = JSON.parse(data);
+                        
+                        if(data["type"] == "success") {
+                            
+                            $("#form").fadeOut(500, function(){
+                                $(".form_location").append("<p>Bedankt! Uw bericht is goed verzonden!</p>").hide().fadeIn(500);
+                            });
+                        }
+                        if(data["type"] == "error") {
+                            $(".err").html("");
+                            $(".form_location").prepend("<p class='err'>Oeps, er ging iets mis. Probeer opnieuw!</p>").hide().fadeIn(500);
+                        }
+                        
+                      }
+						}
+				});
+			});
 		});
 	</script>
 </body>
