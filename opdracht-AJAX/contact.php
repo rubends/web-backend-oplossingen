@@ -32,5 +32,5 @@
 		$_SESSION["notification"] = "Gelieve alle velden in te vullen";
 		header("Location: contact-form.php");
 	}
-
+	//test
 ?>
