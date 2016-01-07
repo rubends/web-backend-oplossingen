@@ -1,0 +1,4 @@
+RewriteEngine On
+
+RewriteRule index.php/bieren/([^/\.]+)/([^/\.]+)/?$ index.php?controller=bieren&method=$1&id=$2
+RewriteRule index.php/bieren/([^/\.]+)/?$ index.php?controller=bieren&method=$1
