@@ -8,7 +8,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <p>Welkom terug, {{ Auth::user()->name }}!</p>
+                    <a href="{{ url('/tasks') }}"><i class="fa fa-btn"></i>Mijn ToDo's</a>
                 </div>
             </div>
         </div>
