@@ -33,8 +33,12 @@ Route::group(['middleware' => ['web']], function () {
 	});
 
     Route::get('/tasks', 'TaskController@index');
+    //Route::get('/tasks', 'DoneTaskController@index'); GAAT NIET
 	Route::post('/task', 'TaskController@store');
 	Route::delete('/task/{task}', 'TaskController@destroy');
+	Route::delete('/donetask/{task}', 'TaskController@donedestroy');
+	Route::any('/donetask/{task}/{name}', 'TaskController@done');
+    Route::any('/notdone/{task}/{name}', 'TaskController@notdone');
 
     Route::auth();
 

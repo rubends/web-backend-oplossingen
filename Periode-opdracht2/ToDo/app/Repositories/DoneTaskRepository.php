@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Task;
-class TaskRepository
+use App\DoneTask;
+class DoneTaskRepository
 {
     /**
      * Get all of the tasks for a given user.
@@ -14,7 +14,7 @@ class TaskRepository
      */
     public function forUser(User $user)
     {
-        return Task::where('user_id', $user->id)
+        return DoneTask::where('user_id', $user->id)
                     ->orderBy('created_at', 'asc')
                     ->get();
     }
