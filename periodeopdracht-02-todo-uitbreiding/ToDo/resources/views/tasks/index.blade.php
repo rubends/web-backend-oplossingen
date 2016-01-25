@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
         
      <!-- Current Tasks -->
-    
+        
         <div class="panel panel-default container">
+            @if(Session::has('message'))
+                <div class="alert alert-info">{{Session::get('message')}}</div>
+            @endif
             <div class="add">
             <a href="{{ url('/newtask') }}"><p>ToDo toevoegen</p></a>
             </div>
@@ -39,7 +41,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button class="del">X</button>
+                                        <button class="del" type="submit" name="delete">X</button>
                                     </form>
                                 </td>
                             </tr>
@@ -80,7 +82,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button class="del">X</button>
+                                        <button class="del" type="submit" name="delete">X</button>
                                     </form>
                                 </td>
                             </tr>

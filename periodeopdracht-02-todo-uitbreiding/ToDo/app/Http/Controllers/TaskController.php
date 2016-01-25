@@ -65,7 +65,7 @@ class TaskController extends Controller
 	        'name' => $request->name
 	    ]);
 
-	    return redirect('/tasks');
+	    return redirect('/tasks')->with('message', 'Todo toegevoegd');
 	}
 
 	/**
@@ -82,7 +82,7 @@ class TaskController extends Controller
 
 	    $task->delete();
 
-	    return redirect('/tasks');
+	    return redirect('/tasks')->with('message', 'De taak is verwijderd');
 	}
 	public function donedestroy(Request $request, DoneTask $task)
 	{
@@ -91,7 +91,7 @@ class TaskController extends Controller
 
 	    $task->delete();
 
-	    return redirect('/tasks');
+	    return redirect('/tasks')->with('message', 'De taak is verwijderd');
 	}
 
 	public function done(Request $request, Task $task)
@@ -105,7 +105,7 @@ class TaskController extends Controller
 
 	    $task->delete();
 
-	    return redirect('/tasks');
+	    return redirect('/tasks')->with('message', 'Alright! Dat is geschrapt.');
 	}
 
 	public function notdone(Request $request, DoneTask $task)
@@ -119,7 +119,7 @@ class TaskController extends Controller
 
 	    $task->delete();
 
-	    return redirect('/tasks');
+	    return redirect('/tasks')->with('message', 'Ai ai, nog meer werk...');
 	}
 
 }
