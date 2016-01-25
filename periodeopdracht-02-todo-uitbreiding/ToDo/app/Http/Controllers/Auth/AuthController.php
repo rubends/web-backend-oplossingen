@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Auth; //Voor de succes flash
+use Session;
 
 class AuthController extends Controller
 {
@@ -63,10 +65,30 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('success', 'Pfieuw, het registreren is gelukt. Welkom!');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function authenticated(){
+        Session::flash('success', 'Pfieuw, het aanmelden is goed verlopen. Welkom!');
+        return redirect()->intended($this->redirectPath());
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        Session::flash('success', 'Je bent afgemeld. Tot de volgende keer!');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 }

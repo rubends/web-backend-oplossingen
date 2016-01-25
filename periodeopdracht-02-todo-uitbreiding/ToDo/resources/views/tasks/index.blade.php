@@ -3,11 +3,11 @@
 @section('content')
         
      <!-- Current Tasks -->
-        
+        @if(Session::has('message'))
+            <div class="alert alert-info">{{Session::get('message')}}</div>
+        @endif
         <div class="panel panel-default container">
-            @if(Session::has('message'))
-                <div class="alert alert-info">{{Session::get('message')}}</div>
-            @endif
+            
             <div class="add">
             <a href="{{ url('/newtask') }}"><p>ToDo toevoegen</p></a>
             </div>

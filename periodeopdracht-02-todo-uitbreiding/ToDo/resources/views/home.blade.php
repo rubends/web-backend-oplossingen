@@ -5,10 +5,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            @if (session('success'))
+                    <div class="alert alert-success">
+                        {{Session::get('success')}}
+                    </div>
+            @endif
             <div class="panel panel-default">
-                @if(Session::has('message'))
-                <div class="alert alert-info">{{Session::get('message')}}</div>
-                @endif
+
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
